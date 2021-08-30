@@ -17,4 +17,4 @@ config:
       dependencies:
         - groupId: com.github.zach-robinson
           artifactId: AIOps-Connector-Yaks-Test-Extension
-          version: "v0.0.3"
+          version: 0.0.2
