@@ -4,6 +4,8 @@ import com.consol.citrus.exceptions.CitrusRuntimeException;
 import com.dyngr.Polling;
 import com.ibm.aiops.connectors.models.V1beta1ConnectorComponent;
 import com.ibm.aiops.connectors.models.V1beta1ConnectorComponentList;
+import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.kubernetes.client.extended.kubectl.Kubectl;
@@ -22,7 +24,8 @@ public class ConnectorComponentSteps {
     private Integer waitSeconds = 5;
     private Integer stopAfterAttempts = 6;
 
-    ConnectorComponentSteps() throws IOException {
+    @Before
+    public void before(Scenario scenario) throws IOException {
         Configuration.setDefaultApiClient(Config.fromCluster());
         ModelMapper.addModelMap("connectors.aiops.ibm.com", "v1beta1", "ConnectorComponent",
                 "connectorcomponents", true,
