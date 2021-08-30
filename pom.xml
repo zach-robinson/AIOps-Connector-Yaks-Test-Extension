@@ -11,7 +11,7 @@
         <dependency>
             <groupId>org.citrusframework.yaks</groupId>
             <artifactId>yaks-kubernetes</artifactId>
-            <version>0.5.0</version>
+            <version>0.4.0</version>
         </dependency>
         <dependency>
             <groupId>com.dyngr</groupId>
@@ -37,9 +37,10 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <maven-remote-resources-plugin.version>1.5</maven-remote-resources-plugin.version>
 
@@ -56,6 +57,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
                         <compilerArgs>
                             <arg>-Xlint:deprecation</arg>
                         </compilerArgs>
