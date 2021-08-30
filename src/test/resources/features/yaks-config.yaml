@@ -7,7 +7,14 @@ config:
         - "org.citrusframework.yaks"
         - "com.ibm.aiops.connectors.steps"
     settings:
+      repositories:
+        - id: "central"
+          name: "Maven Central"
+          url: "https://repo.maven.apache.org/maven2/"
+        - id: "jitpack.io"
+          name: "JitPack Repository"
+          url: "https://jitpack.io"
       dependencies:
-        - groupId: com.ibm.aiops.connectors
+        - groupId: com.github.zach-robinson.AIOps-Connector-Yaks-Test-Extension
           artifactId: AIOps-Connector-Yaks-Test-Extension
-          version: "1.0-SNAPSHOT"
+          version: "v0.0.1"
