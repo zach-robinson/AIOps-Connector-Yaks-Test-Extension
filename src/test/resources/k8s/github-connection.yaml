@@ -3,14 +3,28 @@ kind: ConnectorComponent
 metadata:
   name: github-sample
 spec:
-  host: https://connector-controller.aiopsedge.svc.cluster.local/v1/run
+  apiType: OpenAPI
+  config:
+    patterns:
+      - ^makandre-.*
+    target: katamari/scm-integrations
+    test: true
+    token: ""
+    uri: https://github.ibm.com
+  controllerConfig:
+    - name: integration
+      value: scm-handlers
+    - name: mode
+      value: job
+    - name: ignore
+      value: target
+    - name: live
+      value: "false"
+    - name: host
+      value: https://connector-controller.NamespacePlaceholder.svc.cluster.local/v1/run
+    - name: connectionid
+      value: 315ea7ea-5844-4de8-b245-3cba3d575ab2
+    - name: componentname
+      value: camel-component
+  host: https://connector-synchronizer.aiopsedge.svc.cluster.local/v1/sync
   type: github
-  config: {
-    "patterns": [
-        "^makandre-.*"
-    ],
-    "test": true,
-    "token": "",
-    "uri": "https://github.ibm.com",
-    "target": "katamari/scm-integrations"
-  }

@@ -53,7 +53,7 @@ public class ConnectorComponentSteps {
                     throw new CitrusRuntimeException("Expected phase of ConnectorComponent " + name + " to be " +
                             expectedPhase + ", but was " + actualPhase);
                 }
-                return null;
+                return AttemptResults.justFinish();
             } catch (Exception e) {
                 return AttemptResults.justContinue();
             }
