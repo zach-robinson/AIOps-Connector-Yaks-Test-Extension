@@ -1,7 +1,5 @@
 package com.ibm.aiops.connectors.steps;
 
-import com.consol.citrus.TestCaseRunner;
-import com.consol.citrus.annotations.CitrusResource;
 import com.consol.citrus.exceptions.CitrusRuntimeException;
 import com.dyngr.Polling;
 import com.ibm.aiops.connectors.models.V1beta1ConnectorComponent;
@@ -21,8 +19,6 @@ import java.util.concurrent.TimeUnit;
 
 public class ConnectorComponentSteps {
     private final String namespace = KubernetesSettings.getNamespace();
-    @CitrusResource
-    private TestCaseRunner runner;
     private Integer waitSeconds = 5;
     private Integer stopAfterAttempts = 6;
 
