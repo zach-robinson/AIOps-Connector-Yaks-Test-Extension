@@ -1,0 +1,13 @@
+config:
+  runtime:
+    resources:
+      - ../k8s/github-connection.yaml
+    cucumber:
+      glue:
+        - "org.citrusframework.yaks"
+        - "com.ibm.aiops.connectors.steps"
+    settings:
+      dependencies:
+        - groupId: com.ibm.aiops.connectors
+          artifactId: AIOps-Connector-Yaks-Test-Extension
+          version: "1.0-SNAPSHOT"

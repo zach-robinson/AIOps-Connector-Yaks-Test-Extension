@@ -1,0 +1,15 @@
+apiVersion: connectors.aiops.ibm.com/v1beta1
+kind: ConnectorConfiguration
+metadata:
+  name: github-sample
+spec:
+  type: github
+  config: {
+    "patterns": [
+        "^makandre-.*"
+    ],
+    "test": true,
+    "token": "",
+    "uri": "https://github.ibm.com",
+    "target": "katamari/scm-integrations"
+  }
