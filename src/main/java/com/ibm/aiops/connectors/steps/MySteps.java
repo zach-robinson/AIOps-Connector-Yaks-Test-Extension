@@ -26,4 +26,9 @@ public class MySteps {
     public void doSomethingElse() {
 
     }
+
+    @Then("^I print ([^\\\\s]+)$")
+    public void iPrint(String in) {
+        runner.given(echo(in));
+    }
 }
