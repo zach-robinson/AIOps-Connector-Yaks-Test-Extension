@@ -21,4 +21,9 @@ public class MySteps {
         runner.given(echo("I can do whatever I want!"));
 
     }
+
+    @Then("^I do something else$")
+    public void doSomethingElse() {
+
+    }
 }
