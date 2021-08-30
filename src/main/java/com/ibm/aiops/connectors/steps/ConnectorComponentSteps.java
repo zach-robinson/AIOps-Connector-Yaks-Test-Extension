@@ -29,7 +29,7 @@ public class ConnectorComponentSteps {
                 V1beta1ConnectorComponent.class, V1beta1ConnectorComponentList.class);
     }
 
-    @Given("^Polling with interval (\\\\d+) seconds that stops after (\\\\d+) attempts$")
+    @Given("^Polling with interval (\\d+) seconds that stops after (\\d+) attempts$")
     public void setPollingSettings(int waitSeconds, int stopAfterAttempts) {
         this.waitSeconds = waitSeconds;
         this.stopAfterAttempts = stopAfterAttempts;
@@ -39,7 +39,7 @@ public class ConnectorComponentSteps {
         return Kubectl.get(V1beta1ConnectorComponent.class).name(name).namespace(namespace).execute();
     }
 
-    @Then("^The phase of ConnectorComponent ([^\\\\s]+) should be ([^\\\\s]+)")
+    @Then("^The phase of ConnectorComponent ([^\\s]+) should be ([^\\s]+)")
     public void testPhase(String name, String expectedPhase) {
         Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
             final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
