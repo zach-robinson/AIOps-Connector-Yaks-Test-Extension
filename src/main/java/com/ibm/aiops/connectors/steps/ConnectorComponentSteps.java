@@ -2,6 +2,7 @@ package com.ibm.aiops.connectors.steps;
 
 import com.consol.citrus.exceptions.CitrusRuntimeException;
 import com.dyngr.Polling;
+import com.dyngr.core.AttemptResults;
 import com.ibm.aiops.connectors.models.V1beta1ConnectorComponent;
 import com.ibm.aiops.connectors.models.V1beta1ConnectorComponentList;
 import io.cucumber.java.Before;
@@ -45,13 +46,17 @@ public class ConnectorComponentSteps {
     @Then("^The phase of ConnectorComponent ([^\\s]+) should be ([^\\s]+)")
     public void testPhase(String name, String expectedPhase) {
         Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
-            final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
-            final String actualPhase = Objects.requireNonNull(connectorComponent.getStatus()).getPhase().toString();
-            if (!actualPhase.equals(expectedPhase)) {
-                throw new CitrusRuntimeException("Expected phase of ConnectorComponent " + name + " to be " +
-                        expectedPhase + ", but was " + actualPhase);
+            try {
+                final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
+                final String actualPhase = Objects.requireNonNull(connectorComponent.getStatus()).getPhase().toString();
+                if (!actualPhase.equals(expectedPhase)) {
+                    throw new CitrusRuntimeException("Expected phase of ConnectorComponent " + name + " to be " +
+                            expectedPhase + ", but was " + actualPhase);
+                }
+                return null;
+            } catch (Exception e) {
+                return AttemptResults.justContinue();
             }
-            return null;
         });
     }
 }

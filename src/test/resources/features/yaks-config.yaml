@@ -16,5 +16,5 @@ config:
           url: "https://jitpack.io"
       dependencies:
         - groupId: com.github.zach-robinson
-          artifactId: AIOps-Connector-Yaks-Test-Extension
-          version: 0.0.2
+          artifactId: aiops-connector-yaks-test-extension
+          version: 0.0.7
