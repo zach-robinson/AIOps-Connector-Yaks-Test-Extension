@@ -36,14 +36,15 @@ public class ConnectorComponentSteps {
 
     private void poll(VoidRunner c) {
         throwExceptionsAsCitrus(() ->
-                Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
-                    try {
-                        c.run();
-                        return AttemptResults.justFinish();
-                    } catch (Exception e) {
-                        return AttemptResults.continueFor(e);
-                    }
-                }));
+                Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts)
+                        .stopIfException(false).run(() -> {
+                            try {
+                                c.run();
+                                return AttemptResults.justFinish();
+                            } catch (Exception e) {
+                                return AttemptResults.continueFor(e);
+                            }
+                        }));
     }
 
     @Before
