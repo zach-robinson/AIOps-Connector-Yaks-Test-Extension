@@ -1,5 +1,5 @@
 package com.ibm.aiops.connectors.steps;
 
-public interface CitrusRuntimeThrower {
+public interface VoidRunner {
     void run() throws Exception;
 }
