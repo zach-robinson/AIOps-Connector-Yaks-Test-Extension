@@ -41,7 +41,7 @@ public class ConnectorComponentSteps {
                         c.run();
                         return AttemptResults.justFinish();
                     } catch (Exception e) {
-                        return AttemptResults.justContinue();
+                        return AttemptResults.continueFor(e);
                     }
                 }));
     }
