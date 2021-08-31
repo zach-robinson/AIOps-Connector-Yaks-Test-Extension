@@ -78,7 +78,7 @@ public class ConnectorComponentSteps {
         });
     }
 
-    public void testMessageHelper(String name, String expectedKey, String expectedData) {
+    private void testMessageHelper(String name, String expectedKey, String expectedData) {
         Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
             try {
                 final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
