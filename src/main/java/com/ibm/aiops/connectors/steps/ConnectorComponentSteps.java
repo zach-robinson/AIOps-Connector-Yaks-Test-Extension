@@ -99,7 +99,7 @@ public class ConnectorComponentSteps {
             }
             if (expectedData != null) {
                 final String actualData = Objects.requireNonNull(connectorComponent.getStatus().getMessages())
-                        .get(expectedKey).toString();
+                        .get(expectedKey).getCloudEvent().getData();
                 if (!actualData.equals(expectedData)) {
                     throw new CitrusRuntimeException("Expected status.messages." + expectedKey +
                             " of ConnectorComponent " + name + " to have value of '" +
