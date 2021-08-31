@@ -46,62 +46,65 @@ public class ConnectorComponentSteps {
 
     @Then("^The phase of ConnectorComponent ([^\\s]+) should be ([^\\s]+)$")
     public void testPhase(String name, String expectedPhase) {
-        Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
-            try {
-                final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
-                final String actualPhase = Objects.requireNonNull(connectorComponent.getStatus()).getPhase().toString();
-                if (!actualPhase.equals(expectedPhase)) {
-                    throw new CitrusRuntimeException("Expected phase of ConnectorComponent " + name + " to be " +
-                            expectedPhase + ", but was " + actualPhase);
-                }
-                return AttemptResults.justFinish();
-            } catch (Exception e) {
-                return AttemptResults.justContinue();
-            }
-        });
+        CitrusCatcher.throwExceptionsAsCitrus(() ->
+                Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
+                    try {
+                        final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
+                        final String actualPhase = Objects.requireNonNull(connectorComponent.getStatus()).getPhase().toString();
+                        if (!actualPhase.equals(expectedPhase)) {
+                            throw new CitrusRuntimeException("Expected phase of ConnectorComponent " + name + " to be " +
+                                    expectedPhase + ", but was " + actualPhase);
+                        }
+                        return AttemptResults.justFinish();
+                    } catch (Exception e) {
+                        return AttemptResults.justContinue();
+                    }
+                }));
     }
 
     @Then("^The requeueAfter of ConnectorComponent ([^\\s]+) should be (\\d+)$")
     public void testRqAfter(String name, Long expectedRqAfter) {
-        Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
-            try {
-                final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
-                final Long actualRqAfter = Objects.requireNonNull(connectorComponent.getStatus()).getRequeueAfter();
-                if (!Objects.equals(actualRqAfter, expectedRqAfter)) {
-                    throw new CitrusRuntimeException("Expected requeueAfter of ConnectorComponent "
-                            + name + " to be " + expectedRqAfter + ", but was " + actualRqAfter);
-                }
-                return AttemptResults.justFinish();
-            } catch (Exception e) {
-                return AttemptResults.justContinue();
-            }
-        });
+        CitrusCatcher.throwExceptionsAsCitrus(() ->
+                Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
+                    try {
+                        final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
+                        final Long actualRqAfter = Objects.requireNonNull(connectorComponent.getStatus()).getRequeueAfter();
+                        if (!Objects.equals(actualRqAfter, expectedRqAfter)) {
+                            throw new CitrusRuntimeException("Expected requeueAfter of ConnectorComponent "
+                                    + name + " to be " + expectedRqAfter + ", but was " + actualRqAfter);
+                        }
+                        return AttemptResults.justFinish();
+                    } catch (Exception e) {
+                        return AttemptResults.justContinue();
+                    }
+                }));
     }
 
     private void testMessageHelper(String name, String expectedKey, String expectedData) {
-        Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
-            try {
-                final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
-                if (!Objects.requireNonNull(Objects.requireNonNull(connectorComponent.getStatus()).getMessages())
-                        .containsKey(expectedKey)) {
-                    throw new CitrusRuntimeException("status.messages of ConnectorComponent " + name +
-                            " did not contain key: " + expectedKey);
-                }
-                if (expectedData != null) {
-                    final String actualData = Objects.requireNonNull(connectorComponent.getStatus().getMessages())
-                            .get(expectedKey).toString();
+        CitrusCatcher.throwExceptionsAsCitrus(() ->
+                Polling.waitPeriodly(waitSeconds, TimeUnit.SECONDS).stopAfterAttempt(stopAfterAttempts).run(() -> {
+                    try {
+                        final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
+                        if (!Objects.requireNonNull(Objects.requireNonNull(connectorComponent.getStatus()).getMessages())
+                                .containsKey(expectedKey)) {
+                            throw new CitrusRuntimeException("status.messages of ConnectorComponent " + name +
+                                    " did not contain key: " + expectedKey);
+                        }
+                        if (expectedData != null) {
+                            final String actualData = Objects.requireNonNull(connectorComponent.getStatus().getMessages())
+                                    .get(expectedKey).toString();
                     if (!actualData.equals(expectedData)) {
                         throw new CitrusRuntimeException("Expected status.messages." + expectedKey +
                                 " of ConnectorComponent " + name + " to have value of '" +
                                 StringEscapeUtils.escapeJava(expectedData) + "', but was '" +
                                 StringEscapeUtils.escapeJava(actualData) + "'");
                     }
-                }
-                return AttemptResults.justFinish();
-            } catch (Exception e) {
-                return AttemptResults.justContinue();
-            }
-        });
+                        }
+                        return AttemptResults.justFinish();
+                    } catch (Exception e) {
+                        return AttemptResults.justContinue();
+                    }
+                }));
     }
 
     @Then("^The status.messages of ConnectorComponent ([^\\s]+) should contain the key ([^\\s]+)$")
