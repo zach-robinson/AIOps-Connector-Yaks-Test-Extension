@@ -7,8 +7,6 @@ To use add these options to the `yaks-config.yaml` file in your test directory:
 ```yaml
 config:
   runtime:
-    resources:
-      - ../k8s/github-connection.yaml
     cucumber:
       glue:
         - "org.citrusframework.yaks"
