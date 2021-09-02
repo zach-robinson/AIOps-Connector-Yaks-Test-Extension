@@ -89,6 +89,7 @@ public class ConnectorComponentSteps {
         });
     }
 
+    @Deprecated
     private void testMessageHelper(String name, String expectedKey, String expectedData) {
         poll(() -> {
             final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
@@ -110,11 +111,13 @@ public class ConnectorComponentSteps {
         });
     }
 
+    @Deprecated
     @Then("^The status.messages of ConnectorComponent ([^\\s]+) should contain the key ([^\\s]+)$")
     public void testMessageKey(String name, String expectedKey) {
         testMessageHelper(name, expectedKey, null);
     }
 
+    @Deprecated
     @Then("^The status.messages of ConnectorComponent ([^\\s]+) should contain the key ([^\\s]+) which should have data matching ([^\\s]+)$")
     public void testMessageBody(String name, String expectedKey, String expectedData) {
         testMessageHelper(name, expectedKey, expectedData);
