@@ -31,260 +31,225 @@ import java.util.Objects;
  * ConnectorStatus Object
  */
 @ApiModel(description = "ConnectorStatus Object")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-08-30T14:34:32.048Z[Etc/UTC]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2021-09-02T16:30:48.596Z[Etc/UTC]")
 public class V1beta1ConnectorComponentStatus {
-    public static final String SERIALIZED_NAME_MESSAGES = "messages";
-    public static final String SERIALIZED_NAME_PHASE = "phase";
-    public static final String SERIALIZED_NAME_REQUEUE_AFTER = "requeueAfter";
-    public static final String SERIALIZED_NAME_RESOURCES = "resources";
-    public static final String SERIALIZED_NAME_SPEC_HASH = "specHash";
-    @SerializedName(SERIALIZED_NAME_MESSAGES)
-    private Map<String, V1beta1ConnectorComponentStatusMessages> messages = null;
-    @SerializedName(SERIALIZED_NAME_PHASE)
-    private PhaseEnum phase;
-    @SerializedName(SERIALIZED_NAME_REQUEUE_AFTER)
-    private Long requeueAfter;
-    @SerializedName(SERIALIZED_NAME_RESOURCES)
-    private Map<String, String> resources = null;
-    @SerializedName(SERIALIZED_NAME_SPEC_HASH)
-    private byte[] specHash;
+  public static final String SERIALIZED_NAME_PHASE = "phase";
+  public static final String SERIALIZED_NAME_REQUEUE_AFTER = "requeueAfter";
+  public static final String SERIALIZED_NAME_RESOURCES = "resources";
+  public static final String SERIALIZED_NAME_SPEC_HASH = "specHash";
+  @SerializedName(SERIALIZED_NAME_PHASE)
+  private PhaseEnum phase;
+  @SerializedName(SERIALIZED_NAME_REQUEUE_AFTER)
+  private Long requeueAfter;
+  @SerializedName(SERIALIZED_NAME_RESOURCES)
+  private Map<String, String> resources = null;
+  @SerializedName(SERIALIZED_NAME_SPEC_HASH)
+  private byte[] specHash;
 
-    public V1beta1ConnectorComponentStatus messages(Map<String, V1beta1ConnectorComponentStatusMessages> messages) {
+  public V1beta1ConnectorComponentStatus phase(PhaseEnum phase) {
 
-        this.messages = messages;
-        return this;
+    this.phase = phase;
+    return this;
+  }
+
+  /**
+   * Get phase
+   *
+   * @return phase
+   **/
+  @ApiModelProperty(required = true, value = "")
+
+  public PhaseEnum getPhase() {
+    return phase;
+  }
+
+  public void setPhase(PhaseEnum phase) {
+    this.phase = phase;
+  }
+
+  public V1beta1ConnectorComponentStatus requeueAfter(Long requeueAfter) {
+
+    this.requeueAfter = requeueAfter;
+    return this;
+  }
+
+  /**
+   * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
+   *
+   * @return requeueAfter
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
+
+  public Long getRequeueAfter() {
+    return requeueAfter;
+  }
+
+  public void setRequeueAfter(Long requeueAfter) {
+    this.requeueAfter = requeueAfter;
+  }
+
+  public V1beta1ConnectorComponentStatus resources(Map<String, String> resources) {
+
+    this.resources = resources;
+    return this;
+  }
+
+  public V1beta1ConnectorComponentStatus putResourcesItem(String key, String resourcesItem) {
+    if (this.resources == null) {
+      this.resources = new HashMap<String, String>();
+    }
+    this.resources.put(key, resourcesItem);
+    return this;
+  }
+
+  /**
+   * Resources contained in status
+   *
+   * @return resources
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Resources contained in status")
+
+  public Map<String, String> getResources() {
+    return resources;
+  }
+
+  public void setResources(Map<String, String> resources) {
+    this.resources = resources;
+  }
+
+  public V1beta1ConnectorComponentStatus specHash(byte[] specHash) {
+
+    this.specHash = specHash;
+    return this;
+  }
+
+  /**
+   * Get specHash
+   *
+   * @return specHash
+   **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public byte[] getSpecHash() {
+    return specHash;
+  }
+
+  public void setSpecHash(byte[] specHash) {
+    this.specHash = specHash;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    V1beta1ConnectorComponentStatus v1beta1ConnectorComponentStatus = (V1beta1ConnectorComponentStatus) o;
+    return Objects.equals(this.phase, v1beta1ConnectorComponentStatus.phase) &&
+            Objects.equals(this.requeueAfter, v1beta1ConnectorComponentStatus.requeueAfter) &&
+            Objects.equals(this.resources, v1beta1ConnectorComponentStatus.resources) &&
+            Arrays.equals(this.specHash, v1beta1ConnectorComponentStatus.specHash);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(phase, requeueAfter, resources, Arrays.hashCode(specHash));
+  }
+
+  @Override
+  public String toString() {
+    StringBuilder sb = new StringBuilder();
+    sb.append("class V1beta1ConnectorComponentStatus {\n");
+    sb.append("    phase: ").append(toIndentedString(phase)).append("\n");
+    sb.append("    requeueAfter: ").append(toIndentedString(requeueAfter)).append("\n");
+    sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
+    sb.append("    specHash: ").append(toIndentedString(specHash)).append("\n");
+    sb.append("}");
+    return sb.toString();
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(Object o) {
+    if (o == null) {
+      return "null";
+    }
+    return o.toString().replace("\n", "\n    ");
+  }
+
+  /**
+   * Gets or Sets phase
+   */
+  @JsonAdapter(PhaseEnum.Adapter.class)
+  public enum PhaseEnum {
+    UNKNOWN("Unknown"),
+
+    ACCEPTED("Accepted"),
+
+    RETRYING("Retrying"),
+
+    RUNNING("Running"),
+
+    DONE("Done"),
+
+    INITIALIZING("Initializing"),
+
+    TERMINATING("Terminating"),
+
+    DELETED("Deleted"),
+
+    ERRORED("Errored"),
+
+    DISABLED("Disabled"),
+
+    DISABLING("Disabling"),
+
+    EMPTY("");
+
+    private String value;
+
+    PhaseEnum(String value) {
+      this.value = value;
     }
 
-    public V1beta1ConnectorComponentStatus putMessagesItem(String key, V1beta1ConnectorComponentStatusMessages messagesItem) {
-        if (this.messages == null) {
-            this.messages = new HashMap<String, V1beta1ConnectorComponentStatusMessages>();
+    public static PhaseEnum fromValue(String value) {
+      for (PhaseEnum b : PhaseEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
         }
-        this.messages.put(key, messagesItem);
-        return this;
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
 
-    /**
-     * Get messages
-     *
-     * @return messages
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
-
-    public Map<String, V1beta1ConnectorComponentStatusMessages> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(Map<String, V1beta1ConnectorComponentStatusMessages> messages) {
-        this.messages = messages;
-    }
-
-    public V1beta1ConnectorComponentStatus phase(PhaseEnum phase) {
-
-        this.phase = phase;
-        return this;
-    }
-
-    /**
-     * Get phase
-     *
-     * @return phase
-     **/
-    @ApiModelProperty(required = true, value = "")
-
-    public PhaseEnum getPhase() {
-        return phase;
-    }
-
-    public void setPhase(PhaseEnum phase) {
-        this.phase = phase;
-    }
-
-    public V1beta1ConnectorComponentStatus requeueAfter(Long requeueAfter) {
-
-        this.requeueAfter = requeueAfter;
-        return this;
-    }
-
-    /**
-     * A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.
-     *
-     * @return requeueAfter
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "A Duration represents the elapsed time between two instants as an int64 nanosecond count. The representation limits the largest representable duration to approximately 290 years.")
-
-    public Long getRequeueAfter() {
-        return requeueAfter;
-    }
-
-    public void setRequeueAfter(Long requeueAfter) {
-        this.requeueAfter = requeueAfter;
-    }
-
-    public V1beta1ConnectorComponentStatus resources(Map<String, String> resources) {
-
-        this.resources = resources;
-        return this;
-    }
-
-    public V1beta1ConnectorComponentStatus putResourcesItem(String key, String resourcesItem) {
-        if (this.resources == null) {
-            this.resources = new HashMap<String, String>();
-        }
-        this.resources.put(key, resourcesItem);
-        return this;
-    }
-
-    /**
-     * Resources contained in status
-     *
-     * @return resources
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "Resources contained in status")
-
-    public Map<String, String> getResources() {
-        return resources;
-    }
-
-    public void setResources(Map<String, String> resources) {
-        this.resources = resources;
-    }
-
-    public V1beta1ConnectorComponentStatus specHash(byte[] specHash) {
-
-        this.specHash = specHash;
-        return this;
-    }
-
-    /**
-     * Get specHash
-     *
-     * @return specHash
-     **/
-    @javax.annotation.Nullable
-    @ApiModelProperty(value = "")
-
-    public byte[] getSpecHash() {
-        return specHash;
-    }
-
-    public void setSpecHash(byte[] specHash) {
-        this.specHash = specHash;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        V1beta1ConnectorComponentStatus v1beta1ConnectorComponentStatus = (V1beta1ConnectorComponentStatus) o;
-        return Objects.equals(this.messages, v1beta1ConnectorComponentStatus.messages) &&
-                Objects.equals(this.phase, v1beta1ConnectorComponentStatus.phase) &&
-                Objects.equals(this.requeueAfter, v1beta1ConnectorComponentStatus.requeueAfter) &&
-                Objects.equals(this.resources, v1beta1ConnectorComponentStatus.resources) &&
-                Arrays.equals(this.specHash, v1beta1ConnectorComponentStatus.specHash);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(messages, phase, requeueAfter, resources, Arrays.hashCode(specHash));
+    public String getValue() {
+      return value;
     }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("class V1beta1ConnectorComponentStatus {\n");
-        sb.append("    messages: ").append(toIndentedString(messages)).append("\n");
-        sb.append("    phase: ").append(toIndentedString(phase)).append("\n");
-        sb.append("    requeueAfter: ").append(toIndentedString(requeueAfter)).append("\n");
-        sb.append("    resources: ").append(toIndentedString(resources)).append("\n");
-        sb.append("    specHash: ").append(toIndentedString(specHash)).append("\n");
-        sb.append("}");
-        return sb.toString();
+      return String.valueOf(value);
     }
 
-    /**
-     * Convert the given object to string with each line indented by 4 spaces
-     * (except the first line).
-     */
-    private String toIndentedString(Object o) {
-        if (o == null) {
-            return "null";
-        }
-        return o.toString().replace("\n", "\n    ");
+    public static class Adapter extends TypeAdapter<PhaseEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final PhaseEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public PhaseEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return PhaseEnum.fromValue(value);
+      }
     }
-
-    /**
-     * Gets or Sets phase
-     */
-    @JsonAdapter(PhaseEnum.Adapter.class)
-    public enum PhaseEnum {
-        UNKNOWN("Unknown"),
-
-        ACCEPTED("Accepted"),
-
-        RETRYING("Retrying"),
-
-        RUNNING("Running"),
-
-        DONE("Done"),
-
-        INITIALIZING("Initializing"),
-
-        TERMINATING("Terminating"),
-
-        DELETED("Deleted"),
-
-        ERRORED("Errored"),
-
-        DISABLED("Disabled"),
-
-        DISABLING("Disabling"),
-
-        EMPTY("");
-
-        private String value;
-
-        PhaseEnum(String value) {
-            this.value = value;
-        }
-
-        public static PhaseEnum fromValue(String value) {
-            for (PhaseEnum b : PhaseEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        public static class Adapter extends TypeAdapter<PhaseEnum> {
-            @Override
-            public void write(final JsonWriter jsonWriter, final PhaseEnum enumeration) throws IOException {
-                jsonWriter.value(enumeration.getValue());
-            }
-
-            @Override
-            public PhaseEnum read(final JsonReader jsonReader) throws IOException {
-                String value = jsonReader.nextString();
-                return PhaseEnum.fromValue(value);
-            }
-        }
-    }
+  }
 
 }
 
