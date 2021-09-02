@@ -14,7 +14,6 @@ import io.kubernetes.client.extended.kubectl.exception.KubectlException;
 import io.kubernetes.client.openapi.Configuration;
 import io.kubernetes.client.util.Config;
 import io.kubernetes.client.util.ModelMapper;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.citrusframework.yaks.kubernetes.KubernetesSettings;
 
 import java.io.IOException;
@@ -87,39 +86,5 @@ public class ConnectorComponentSteps {
                         + name + " to be " + expectedRqAfter + ", but was " + actualRqAfter);
             }
         });
-    }
-
-    @Deprecated
-    private void testMessageHelper(String name, String expectedKey, String expectedData) {
-        poll(() -> {
-            final V1beta1ConnectorComponent connectorComponent = getConnectorComponent(name);
-            if (!Objects.requireNonNull(Objects.requireNonNull(connectorComponent.getStatus()).getMessages())
-                    .containsKey(expectedKey)) {
-                throw new CitrusRuntimeException("status.messages of ConnectorComponent " + name +
-                        " did not contain key: " + expectedKey);
-            }
-            if (expectedData != null) {
-                final String actualData = Objects.requireNonNull(connectorComponent.getStatus().getMessages())
-                        .get(expectedKey).getCloudEvent().getData();
-                if (!actualData.equals(expectedData)) {
-                    throw new CitrusRuntimeException("Expected status.messages." + expectedKey +
-                            " of ConnectorComponent " + name + " to have value of '" +
-                            StringEscapeUtils.escapeJava(expectedData) + "', but was '" +
-                            StringEscapeUtils.escapeJava(actualData) + "'");
-                }
-            }
-        });
-    }
-
-    @Deprecated
-    @Then("^The status.messages of ConnectorComponent ([^\\s]+) should contain the key ([^\\s]+)$")
-    public void testMessageKey(String name, String expectedKey) {
-        testMessageHelper(name, expectedKey, null);
-    }
-
-    @Deprecated
-    @Then("^The status.messages of ConnectorComponent ([^\\s]+) should contain the key ([^\\s]+) which should have data matching ([^\\s]+)$")
-    public void testMessageBody(String name, String expectedKey, String expectedData) {
-        testMessageHelper(name, expectedKey, expectedData);
     }
 }
